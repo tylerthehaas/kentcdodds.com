@@ -22,26 +22,14 @@ function Blog({data: {allMdx}, pageContext: {pagination}, subscribeForm}) {
     .filter(post => post !== undefined)
 
   return (
-    <Layout headerColor={theme.colors.white} subscribeForm={subscribeForm}>
+    <Layout
+      headerColor={theme.colors.white}
+      subscribeForm={subscribeForm}
+      height="unset"
+    >
       <SEO />
-      <Container
-        noVerticalPadding
-        css={css`
-          margin-top: 10px;
-          a,
-          p {
-          }
-          h2 {
-            a {
-              color: inherit;
-            }
-          }
-          small {
-            display: block;
-          }
-        `}
-      >
-        <div
+      <Container noVerticalPadding>
+        {/* <div
           css={{
             marginTop: 20,
             fontStyle: 'italic',
@@ -49,7 +37,7 @@ function Blog({data: {allMdx}, pageContext: {pagination}, subscribeForm}) {
         >
           {`Looking for something specific? `}
           <Link to="/search">Search for a blogpost here.</Link>
-        </div>
+        </div> */}
         {posts.map(({node: post}) => (
           <div
             key={post.id}

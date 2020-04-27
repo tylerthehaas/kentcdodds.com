@@ -30,17 +30,20 @@ const Description = styled.p`
 
 export default function Index({data: {allMdx}}) {
   return (
-    <Layout headerColor={theme.colors.white} logo={false} hero={<Hero />}>
+    <Layout
+      headerColor={theme.colors.white}
+      logo={false}
+      hero={<Hero />}
+      height="100vh"
+    >
       <SEO />
       <Container
         css={css`
-          margin-top: -20px;
           position: relative;
           padding-bottom: 0;
           background: white;
           border-radius: 5px;
           padding: 40px 80px 60px 80px;
-          margin-bottom: ${rhythm(1)};
           ${bpMaxMD} {
             padding: auto;
           }

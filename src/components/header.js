@@ -17,22 +17,14 @@ function HeaderLink({headerColor, activeClassName = 'active', ...props}) {
       partiallyActive={true}
       css={{
         textDecoration: 'none',
-        color: headerColor ? headerColor : theme.colors.body_color,
+        color: theme.colors.white,
         '&:hover,&:focus': {
-          background:
-            headerColor === theme.colors.white
-              ? 'rgba(40, 28, 77, 0.3)'
-              : lighten(0.4, theme.brand.primary),
-          color:
-            headerColor === theme.colors.white
-              ? 'white'
-              : theme.colors.link_color_hover,
+          textDecoration: `underline solid ${theme.colors.white}`,
+          color: theme.colors.white,
         },
         '&.active': {
-          background:
-            headerColor === theme.colors.white
-              ? 'rgba(40, 28, 77, 0.3)'
-              : lighten(0.4, theme.brand.primary),
+          background: lighten(0.4, theme.brand.primary),
+          color: theme.colors.black,
         },
       }}
       {...props}
@@ -51,29 +43,22 @@ const NavLink = styled(HeaderLink)({
 })
 
 function Header({
-  dark,
-  bgColor = 'none',
   siteTitle,
   headerLink = '/',
   headerColor = 'black',
-  fixed = false,
   headerImage = true,
   maxWidth = 720,
 }) {
   return (
     <header
       css={css`
+        display: flex;
+        align-items: center;
         width: 100%;
-        flex-shrink: 0;
-        background: none;
-        padding: 30px 0 0 0;
+        background: #090a0b;
         ${bpMaxSM} {
           padding: 35px 0 0 0;
         }
-        background: ${dark ? '#090909' : `${bgColor}` || 'none'};
-        z-index: 10;
-        position: ${fixed ? 'fixed' : 'absolute'};
-        top: 0;
         font-family: ${fonts.light};
       `}
     >
