@@ -45,7 +45,7 @@ So if we want to move developers between projects at a company while maintaining
 the highest level of productivity possible there are only two ways to do this.
 
 1. Increase team members learning rate
-2. decrease the needed to learn to be productive
+2. decrease the amount needed to learn to be productive
 
 It turns out increasing learning rate is incredibly difficult to do. So the
 question becomes how can we decrease the amount a developer needs to learn to be
