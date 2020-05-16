@@ -39,7 +39,7 @@ a new project and be immediately productive.
 Everyone has a certain rate they learn things at. This makes it so that time to
 productivity follows a simple formula:
 
-> amount to learn / average rate of learning = productivity
+> amount to learn / average rate of learning = time to productivity
 
 So if we want to move developers between projects at a company while maintaining
 the highest level of productivity possible there are only two ways to do this.
