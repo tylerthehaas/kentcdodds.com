@@ -143,13 +143,13 @@ module.exports = {
         feeds: [
           getBlogFeed({
             filePathRegex: `//content/blog//`,
-            blogUrl: 'https://kentcdodds.com/blog',
+            blogUrl: 'https://tylerthehaas.com/blog',
             output: '/blog/rss.xml',
             title: 'Kent C. Dodds Blog RSS Feed',
           }),
           getBlogFeed({
             filePathRegex: `//content/writing-blog//`,
-            blogUrl: 'https://kentcdodds.com/writing/blog',
+            blogUrl: 'https://tylerthehaas.com/writing/blog',
             output: '/writing/blog/rss.xml',
             title: `Kent's Writing Blog RSS Feed`,
           }),
