@@ -404,7 +404,7 @@ exports.onCreateNode = ({node, getNode, actions}) => {
     createNodeField({
       name: 'editLink',
       node,
-      value: `https://github.com/kentcdodds/kentcdodds.com/edit/master${node.fileAbsolutePath.replace(
+      value: `https://github.com/tylerthehaas/kentcdodds.com/edit/master${node.fileAbsolutePath.replace(
         __dirname,
         '',
       )}`,
