@@ -1,8 +1,8 @@
 module.exports = {
   siteTitle: 'Tyler Haas', // Navigation and Site Title
   siteTitleAlt: 'The personal website of Tyler Haas', // Alternative Site title for SEO
-  siteTitleShort: 'kentcdodds', // short_name for manifest
-  siteUrl: process.env.ROOT_URL || 'https://kentcdodds.com', // Domain of your site. No trailing slash!
+  siteTitleShort: 'tylerthehaas', // short_name for manifest
+  siteUrl: process.env.ROOT_URL || 'https://tylerthehaas.com', // Domain of your site. No trailing slash!
   siteLanguage: 'en', // Language Tag on <html> element
   siteLogo: 'images', // Used for SEO and manifest, path to your image you placed in the 'static' folder
   siteDescription: '',
