@@ -8,36 +8,6 @@ const _ = require('lodash')
 
 const PAGINATION_OFFSET = 7
 
-const createWorkshops = (createPage, edges) => {
-  edges.forEach(({node}, i) => {
-    const prev = i === 0 ? null : edges[i - 1].node
-    const next = i === edges.length - 1 ? null : edges[i + 1].node
-    const pagePath = node.fields.slug
-
-    createPage({
-      path: pagePath,
-      component: path.resolve(`./src/templates/workshop-page.js`),
-      context: {
-        id: node.id,
-        prev,
-        next,
-      },
-    })
-  })
-}
-
-function createWorkshopPages({data, actions}) {
-  if (_.isEmpty(data.edges)) {
-    throw new Error('There are no workshops!')
-  }
-
-  const {edges} = data
-  const {createPage} = actions
-  createWorkshops(createPage, edges)
-
-  return null
-}
-
 function stripMarkdown(markdownString) {
   return remark()
     .use(stripMarkdownPlugin)
@@ -94,38 +64,6 @@ function createBlogPages({blogPath, data, paginationTemplate, actions}) {
   return null
 }
 
-const createEpisodes = (createPage, edges) => {
-  edges.forEach(({node}) => {
-    const seasonNumber = node.frontmatter.season
-    const twoDigits = n => (n.toString().length < 2 ? `0${n}` : n)
-    const episodePath = `chats-with-kent-podcast/seasons/${twoDigits(
-      seasonNumber,
-    )}/episodes/${node.frontmatter.slug}`
-
-    createPage({
-      path: episodePath,
-      component: path.resolve(`./src/templates/podcast-episode.js`),
-      context: {
-        slug: episodePath,
-        id: node.frontmatter.id,
-        title: node.frontmatter.title,
-        season: node.frontmatter.season,
-      },
-    })
-  })
-}
-
-function createPodcastPages({data, actions}) {
-  if (_.isEmpty(data.edges)) {
-    throw new Error('There are no podcast episodes!')
-  }
-  const {edges} = data
-  const {createPage} = actions
-
-  createEpisodes(createPage, edges)
-  return null
-}
-
 exports.createPages = async ({actions, graphql}) => {
   const {data, errors} = await graphql(`
     fragment PostDetails on Mdx {
@@ -147,52 +85,10 @@ exports.createPages = async ({actions, graphql}) => {
       }
     }
     query {
-      podcast: allMdx(
-        filter: {fileAbsolutePath: {regex: "//content/podcast//"}}
-      ) {
-        edges {
-          node {
-            fileAbsolutePath
-            frontmatter {
-              title
-              slug
-              id
-              season
-              number
-            }
-          }
-        }
-      }
       blog: allMdx(
         filter: {
           frontmatter: {published: {ne: false}}
           fileAbsolutePath: {regex: "//content/blog//"}
-        }
-        sort: {order: DESC, fields: [frontmatter___date]}
-      ) {
-        edges {
-          node {
-            ...PostDetails
-          }
-        }
-      }
-      writing: allMdx(
-        filter: {
-          frontmatter: {published: {ne: false}}
-          fileAbsolutePath: {regex: "//content/writing-blog//"}
-        }
-        sort: {order: DESC, fields: [frontmatter___date]}
-      ) {
-        edges {
-          node {
-            ...PostDetails
-          }
-        }
-      }
-      workshops: allMdx(
-        filter: {
-          frontmatter: {published: {ne: false}}
-          fileAbsolutePath: {regex: "//content/workshops//"}
         }
         sort: {order: DESC, fields: [frontmatter___date]}
       ) {
@@ -209,28 +105,12 @@ exports.createPages = async ({actions, graphql}) => {
     return Promise.reject(errors)
   }
 
-  const {blog, writing, workshops, podcast} = data
-
-  createPodcastPages({
-    podcastPath: '',
-    data: podcast,
-    actions,
-  })
+  const {blog} = data
 
   createBlogPages({
     blogPath: '/blog',
     data: blog,
     paginationTemplate: path.resolve(`src/templates/blog.js`),
-    actions,
-  })
-  createBlogPages({
-    blogPath: '/writing/blog',
-    data: writing,
-    paginationTemplate: path.resolve(`src/templates/writing-blog.js`),
-    actions,
-  })
-  createWorkshopPages({
-    data: workshops,
     actions,
   })
 }
@@ -284,7 +164,6 @@ function createPaginatedPages(
   })
 }
 
-// eslint-disable-next-line complexity
 exports.onCreateNode = ({node, getNode, actions}) => {
   const {createNodeField} = actions
 
@@ -293,36 +172,11 @@ exports.onCreateNode = ({node, getNode, actions}) => {
     let slug =
       node.frontmatter.slug ||
       createFilePath({node, getNode, basePath: `pages`})
-    let {isWriting, isWorkshop, isScheduled, isPodcast} = false
 
     if (node.fileAbsolutePath.includes('content/blog/')) {
       slug = `/blog/${node.frontmatter.slug || slugify(parent.name)}`
     }
 
-    if (node.fileAbsolutePath.includes('content/podcast/')) {
-      const twoDigits = n => (n.toString().length < 2 ? `0${n}` : n)
-      slug = `chats-with-kent-podcast/seasons/${twoDigits(
-        node.frontmatter.season,
-      )}/episodes/${node.frontmatter.slug}`
-      isPodcast = true
-    }
-
-    if (node.fileAbsolutePath.includes('content/workshops/')) {
-      isWriting = false
-      isWorkshop = true
-      isScheduled = false
-      if (node.frontmatter.date) {
-        isWriting = false
-        isScheduled = true
-      }
-      slug = `/workshops/${node.frontmatter.slug ||
-        slugify(node.frontmatter.title)}`
-    }
-
-    if (node.fileAbsolutePath.includes('content/writing-blog/')) {
-      isWriting = true
-      slug = `/writing/blog/${node.frontmatter.slug || slugify(parent.name)}`
-    }
     createNodeField({
       name: 'id',
       node,
@@ -344,7 +198,7 @@ exports.onCreateNode = ({node, getNode, actions}) => {
     createNodeField({
       name: 'author',
       node,
-      value: node.frontmatter.author || 'Kent C. Dodds',
+      value: node.frontmatter.author || 'Tyler Haas',
     })
 
     createNodeField({
@@ -413,31 +267,7 @@ exports.onCreateNode = ({node, getNode, actions}) => {
     createNodeField({
       name: 'noFooter',
       node,
-      value: isWriting ? false : node.frontmatter.noFooter || false,
-    })
-
-    createNodeField({
-      name: 'isWriting',
-      node,
-      value: isWriting,
-    })
-
-    createNodeField({
-      name: 'isWorkshop',
-      node,
-      value: isWorkshop,
-    })
-
-    createNodeField({
-      name: 'isScheduled',
-      node,
-      value: isScheduled,
-    })
-
-    createNodeField({
-      name: 'isPodcast',
-      node,
-      value: isPodcast,
+      value: node.frontmatter.noFooter || false,
     })
   }
 }

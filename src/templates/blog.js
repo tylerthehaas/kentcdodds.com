@@ -24,7 +24,6 @@ export default function CodingBlogWithData(props) {
                 id
                 fields {
                   title
-                  isWriting
                   slug
                   date
                 }
