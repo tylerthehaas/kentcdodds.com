@@ -6,8 +6,6 @@ import {rhythm, fonts} from '../lib/typography'
 import Markdown from 'react-markdown'
 import Container from 'components/container'
 
-const photoOfTyler = ''
-
 function Hero({children, title = ``, text, background = ``, image = ``}) {
   return (
     <section
@@ -57,17 +55,6 @@ function Hero({children, title = ``, text, background = ``, image = ``}) {
             ${bpMaxMD} {
               display: block;
               visibility: visible;
-              /* width: 250px;
-              height: 250px; */
-              //background: #241d44;
-              /* ${image === photoOfTyler &&
-                `
-                width: 160px;
-              height: 160px;
-              overflow: 'hidden';
-              border-radius: 50%;
-              background: #4b4ddf;
-              `} */
               background-image: url(${image});
               background-size: cover;
               background-position-y: 10px;
@@ -93,7 +80,6 @@ function Hero({children, title = ``, text, background = ``, image = ``}) {
               height: 100%;
               display: flex;
               //align-self: center;
-              /* padding-bottom: ${image === photoOfTyler ? '40px' : '0'}; */
             `}
           >
             {title}
