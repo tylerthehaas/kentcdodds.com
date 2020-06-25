@@ -15,7 +15,7 @@
     "max-lines-per-function": "off",
     "babel/quotes": "off",
     "consistent-return": "off",
-    "jest/no-deprecated-functins": "off",
+    "jest/no-deprecated-functions": "off",
     "jest/no-conditional-expect": "off"
   }
 }
