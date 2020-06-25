@@ -17,8 +17,8 @@ keywords:
 banner: './images/banner.jpg'
 bannerCredit: 'Photo by [TimJ](https://unsplash.com/photos/Vrv_nZHaFTc)'
 redirects:
-  - '/blog/stop-writing-mocks'
-  - '/blog/stop-writing-mocks/'
+  # - '/blog/stop-writing-mocks'
+  # - '/blog/stop-writing-mocks/'
 ---
 
 # Overview
@@ -336,6 +336,6 @@ global handler.
 
 # Conclusion
 
-The less we mock in our tests the more similarly our code resembles the way our
+The less we mock in our tests the more similarly our test resembles the way our
 users use our software. By using msw we can actually not mock at all! This gives
 us more confidence about our code helping us ship less bugs. Enjoy!!
