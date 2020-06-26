@@ -336,6 +336,6 @@ global handler.
 
 # Conclusion
 
-The less we mock in our tests the more similarly our test resembles the way our
-users use our software. By using msw we can actually not mock at all! This gives
-us more confidence about our code helping us ship less bugs. Enjoy!!
+The less we mock the more our test will resemble the way our users use our
+software. By using msw we can actually not mock at all! This gives us more
+confidence about our code helping us ship less bugs. Enjoy!!
