@@ -13,8 +13,6 @@ unlisted: true
 useBigHero: false
 heroMessage: 'the is a message'
 noFooter: false
-redirects:
-  - '/invisible-post-423123'
 
 # this is stuff for the workshops
 spotsRemaining: 0

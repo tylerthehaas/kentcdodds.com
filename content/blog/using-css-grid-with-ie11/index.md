@@ -15,9 +15,6 @@ keywords:
 banner: './images/banner.jpg'
 bannerCredit: 'Photo by [Asher Ward](https://unsplash.com/photos/18oNt_MP8M0)'
 published: true
-redirects:
-  - '/blog/using-css-grid-with-ie11'
-  - '/blog/using-css-grid-with-ie11/'
 ---
 
 # CSS Grid

@@ -21,9 +21,6 @@ published: true
 banner: './images/banner.jpg'
 bannerCredit:
   'Photo by [Hans-Peter Gauster](https://unsplash.com/photos/3y1zF4hIPCg)'
-redirects:
-  - '/blog/limiting-states'
-  - '/blog/limiting-states/'
 ---
 
 # Limiting State

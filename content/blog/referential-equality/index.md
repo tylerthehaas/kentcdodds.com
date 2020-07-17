@@ -17,9 +17,6 @@ keywords:
 banner: './images/banner.jpg'
 bannerCredit:
   'Photo by [Sharon McCutcheon](https://unsplash.com/photos/NeRKgBUUDjM)'
-redirects:
-  - '/blog/referential-equality-bug'
-  - '/blog/referential-equality-bug/'
 ---
 
 # The problem

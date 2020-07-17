@@ -16,9 +16,6 @@ keywords:
   - 'coding'
 banner: './images/banner.jpg'
 bannerCredit: 'Photo by [TimJ](https://unsplash.com/photos/Vrv_nZHaFTc)'
-redirects:
-  # - '/blog/stop-writing-mocks'
-  # - '/blog/stop-writing-mocks/'
 ---
 
 # Overview
