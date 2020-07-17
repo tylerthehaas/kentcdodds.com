@@ -16,9 +16,6 @@ keywords:
   - 'automation'
 banner: './images/banner.jpg'
 bannerCredit: 'Photo by [Obi Onyeador](https://unsplash.com/photos/-4NNL4-E4q8)'
-redirects:
-  - '/blog/automating-your-style-guide'
-  - '/blog/automating-your-style-guide/'
 ---
 
 # Becoming Productive in New Projects
