@@ -81,7 +81,6 @@ exports.createPages = async ({actions, graphql}) => {
         slug
         description
         date
-        redirects
       }
     }
     query {
@@ -247,12 +246,6 @@ exports.onCreateNode = ({node, getNode, actions}) => {
       name: 'keywords',
       node,
       value: node.frontmatter.keywords || [],
-    })
-
-    createNodeField({
-      name: 'redirects',
-      node,
-      value: node.frontmatter.redirects,
     })
 
     createNodeField({
